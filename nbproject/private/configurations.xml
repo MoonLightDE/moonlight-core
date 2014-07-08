@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configurationDescriptor version="94">
+  <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <df root="." name="0">
+      <df name="build">
+        <df name="_CPack_Packages">
+          <df name="Linux">
+            <df name="DEB">
+              <df name="moonlight-core-0.6.0-Linux">
+                <df name="usr">
+                  <df name="bin">
+                  </df>
+                  <df name="include">
+                    <df name="moonlight">
+                      <df name="core">
+                        <in>ICore.h</in>
+                        <in>IQt5.h</in>
+                      </df>
+                    </df>
+                  </df>
+                  <df name="lib">
+                    <df name="moonlight">
+                      <df name="modules">
+                      </df>
+                    </df>
+                  </df>
+                  <df name="share">
+                    <df name="cmake">
+                      <df name="moonlight_core">
+                      </df>
+                    </df>
+                    <df name="moonlight">
+                      <df name="descriptors">
+                      </df>
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
+            <df name="STGZ">
+              <df name="moonlight-core-0.6.0-Linux">
+                <df name="bin">
+                </df>
+                <df name="include">
+                  <df name="moonlight">
+                    <df name="core">
+                      <in>ICore.h</in>
+                      <in>IQt5.h</in>
+                    </df>
+                  </df>
+                </df>
+                <df name="lib">
+                  <df name="moonlight">
+                    <df name="modules">
+                    </df>
+                  </df>
+                </df>
+                <df name="share">
+                  <df name="cmake">
+                    <df name="moonlight_core">
+                    </df>
+                  </df>
+                  <df name="moonlight">
+                    <df name="descriptors">
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
+            <df name="TGZ">
+              <df name="moonlight-core-0.6.0-Linux">
+                <df name="bin">
+                </df>
+                <df name="include">
+                  <df name="moonlight">
+                    <df name="core">
+                      <in>ICore.h</in>
+                      <in>IQt5.h</in>
+                    </df>
+                  </df>
+                </df>
+                <df name="lib">
+                  <df name="moonlight">
+                    <df name="modules">
+                    </df>
+                  </df>
+                </df>
+                <df name="share">
+                  <df name="cmake">
+                    <df name="moonlight_core">
+                    </df>
+                  </df>
+                  <df name="moonlight">
+                    <df name="descriptors">
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
+            <df name="TZ">
+              <df name="moonlight-core-0.6.0-Linux">
+                <df name="bin">
+                </df>
+                <df name="include">
+                  <df name="moonlight">
+                    <df name="core">
+                      <in>ICore.h</in>
+                      <in>IQt5.h</in>
+                    </df>
+                  </df>
+                </df>
+                <df name="lib">
+                  <df name="moonlight">
+                    <df name="modules">
+                    </df>
+                  </df>
+                </df>
+                <df name="share">
+                  <df name="cmake">
+                    <df name="moonlight_core">
+                    </df>
+                  </df>
+                  <df name="moonlight">
+                    <df name="descriptors">
+                    </df>
+                  </df>
+                </df>
+              </df>
+            </df>
+          </df>
+        </df>
+        <df name="bin">
+        </df>
+        <df name="CMakeFiles">
+          <df name="2.8.12.2">
+            <df name="CompilerIdC">
+              <in>CMakeCCompilerId.c</in>
+            </df>
+            <df name="CompilerIdCXX">
+              <in>CMakeCXXCompilerId.cpp</in>
+            </df>
+          </df>
+          <df name="CMakeTmp">
+          </df>
+        </df>
+        <df name="install">
+        </df>
+        <df name="lib">
+          <df name="moonlight">
+            <df name="modules">
+            </df>
+          </df>
+        </df>
+        <df name="src">
+          <df name="CMakeFiles">
+            <df name="moonlight-core.dir">
+            </df>
+            <df name="moonlight-core_automoc.dir">
+            </df>
+          </df>
+          <in>MoonLightDECoreConfig.h</in>
+          <in>moc_Controller.cpp</in>
+          <in>moonlight-core_automoc.cpp</in>
+          <in>moonlight-core_init.cpp</in>
+        </df>
+        <df name="test">
+          <df name="CMakeFiles">
+          </df>
+          <df name="test_driver">
+            <df name="CMakeFiles">
+              <df name="moonlightDE-test_driver.dir">
+              </df>
+              <df name="moonlightDE-test_driver_automoc.dir">
+              </df>
+            </df>
+            <in>ADS_SmoonlightDE-test_driver_init.cpp</in>
+            <in>MODULE_NAME_init.cpp</in>
+            <in>aamoonlightDE-test_driver_init.cpp</in>
+            <in>astest_driver_init.cpp</in>
+            <in>moc_TestICore.cpp</in>
+            <in>moonlightDE-test_driver_automoc.cpp</in>
+            <in>moonlightDE-test_driver_init.cpp</in>
+            <in>test_driver_AS_init.cpp</in>
+            <in>test_driver_init.cpp</in>
+            <in>test_driverasdasd_init.cpp</in>
+          </df>
+          <df name="test_module">
+            <df name="CMakeFiles">
+              <df name="moonlightDE-test_module.dir">
+              </df>
+              <df name="moonlightDE-test_module_automoc.dir">
+              </df>
+            </df>
+            <in>moonlightDE-test_module_automoc.cpp</in>
+            <in>moonlightDE-test_module_init.cpp</in>
+            <in>test_module_init.cpp</in>
+          </df>
+        </df>
+      </df>
+      <df name="cmake">
+        <in>moonlight_core-config.cmake.in</in>
+        <in>moonlight_core-use.cmake.in</in>
+      </df>
+      <df name="include">
+        <df name="core">
+          <in>ICore.h</in>
+          <in>IQt5.h</in>
+        </df>
+      </df>
+      <df name="src">
+        <in>Controller.cpp</in>
+        <in>Controller.h</in>
+        <in>ModuleManager.cpp</in>
+        <in>ModuleManager.h</in>
+        <in>MoonLightDECoreConfig.h.in</in>
+        <in>main.cpp</in>
+      </df>
+      <df name="test">
+        <df name="test_driver">
+          <in>Activator.cpp</in>
+          <in>TestICore.cpp</in>
+          <in>TestICore.h</in>
+          <in>moonlightDE-test_driver.desktop</in>
+        </df>
+        <df name="test_module">
+          <in>Activator.cpp</in>
+        </df>
+      </df>
+    </df>
+  </logicalFolder>
+  <projectmakefile>build/Makefile</projectmakefile>
+  <confs>
+    <conf name="Default" type="0">
+      <toolsSet>
+        <developmentServer>localhost</developmentServer>
+        <platform>2</platform>
+      </toolsSet>
+      <compile>
+        <compiledirpicklist>
+          <compiledirpicklistitem>.</compiledirpicklistitem>
+          <compiledirpicklistitem>${AUTO_FOLDER}</compiledirpicklistitem>
+        </compiledirpicklist>
+        <compiledir>${AUTO_FOLDER}</compiledir>
+        <compilecommandpicklist>
+          <compilecommandpicklistitem>${MAKE} ${ITEM_NAME}.o</compilecommandpicklistitem>
+          <compilecommandpicklistitem>${AUTO_COMPILE}</compilecommandpicklistitem>
+        </compilecommandpicklist>
+        <compilecommand>${AUTO_COMPILE}</compilecommand>
+      </compile>
+      <dbx_gdbdebugger version="1">
+        <gdb_pathmaps>
+        </gdb_pathmaps>
+        <gdb_interceptlist>
+          <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
+        </gdb_interceptlist>
+        <gdb_options>
+          <DebugOptions>
+          </DebugOptions>
+        </gdb_options>
+        <gdb_buildfirst gdb_buildfirst_overriden="false" gdb_buildfirst_old="false"/>
+      </dbx_gdbdebugger>
+      <nativedebugger version="1">
+        <engine>gdb</engine>
+      </nativedebugger>
+      <runprofile version="9">
+        <runcommandpicklist>
+          <runcommandpicklistitem>"${OUTPUT_PATH}"</runcommandpicklistitem>
+          <runcommandpicklistitem>"${OUTPUT_PATH}" -p ../test/Test.conf -m lib/moonlight/modules/ -d ../test/test_driver/ </runcommandpicklistitem>
+        </runcommandpicklist>
+        <runcommand>"${OUTPUT_PATH}" -p ../test/Test.conf -m lib/moonlight/modules/ -d ../test/test_driver/</runcommand>
+        <rundir>build</rundir>
+        <buildfirst>true</buildfirst>
+        <terminal-type>0</terminal-type>
+        <remove-instrumentation>0</remove-instrumentation>
+        <environment>
+        </environment>
+      </runprofile>
+    </conf>
+  </confs>
+</configurationDescriptor>

@@ -1,0 +1,61 @@
+#    Copyright (C) 2014 Moonlight Desktop Environment Team
+#    Authors:
+#       Alexis López Zubieta
+#
+#    This file is part of the Moonlight Desktop Environment 
+#
+#    Moonlight Desktop Environment is free software you can redistribute it 
+#    and/or modify it under the terms of the GNU General Public License as 
+#    published by the Free Software Foundation, either version 3 of the License,
+#    or (at your option) any later version.
+#
+#    Moonlight Desktop Environment is distributed in the hope that it will be
+#    useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with Moonlight Desktop Environment.  If not, see 
+#    <http://www.gnu.org/licenses/>.
+#
+#-------------------------------------------------------------------------------
+# Find the MoonLight Core include and library dirs
+#-------------------------------------------------------------------------------
+# Defined variables:
+#
+#   MOONLIGHT_CORE_FOUND         - Set to TRUE if all of the above has been found
+#
+#   MOONLIGHT_CORE_SERIVICES_DIR - The MoonLight services headers directory
+#
+#   MOONLIGHT_CORE_MODULES_DIR   - The MoonLight modules directory
+#  
+#   MOONLIGHT_CORE_DESCRIPTORS_DIR - The MoonLight modules descriptors directory
+#
+#-------------------------------------------------------------------------------
+# Typical usage could be something like:
+#
+#   find_package(MOONLIGHT_CORE REQUIRED)
+#   include_directories(${MOONLIGHT_CORE_SERIVICES_DIR})
+#   
+#   INSTALL(TARGETS ${PROJECT_NAME}
+#        RUNTIME DESTINATION bin
+#        LIBRARY DESTINATION ${MOONLIGHT_CORE_MODULES_DIR}
+#        ARCHIVE DESTINATION lib/static)
+#
+#   INSTALL(FILES ${SERVICES_HEADERS} DESTINATION ${MOONLIGHT_CORE_SERIVICES_DIR}/${MODULE_NAME} )
+#
+#
+
+if(MOONLIGHT_CORE_FIND_REQUIRED)
+  set(REQUIRED_OPT "REQUIRED")
+endif()
+
+set(MOONLIGHT_CORE_SERIVICES_DIR    @CMAKE_INSTALL_PREFIX@/@SERVICES_INSTALL_DIR@)
+set(MOONLIGHT_CORE_MODULES_DIR      @CMAKE_INSTALL_PREFIX@/@MODULES_INSTALL_DIR@)
+set(MOONLIGHT_CORE_DESCRIPTORS_DIR  @CMAKE_INSTALL_PREFIX@/@DESCRIPTORS_INSTALL_DIR@)
+    
+set(MOONLIGHT_CORE_USE_FILE      ${CMAKE_CURRENT_LIST_DIR}/moonlight_core-use.cmake)
+
+if(LXQT_FIND_QUIETLY)
+  set(QUIET_OPT "QUIET")
+endif()
