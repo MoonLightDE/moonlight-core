@@ -64,6 +64,10 @@ set(CMAKE_INCLUDE_CURRENT_DIR ON)
 QT5_WRAP_UI(${PROJEC_NAME}_UI_HEADERS ${${PROJEC_NAME}_UIS})
 QT5_ADD_RESOURCES(${PROJEC_NAME}_QRC_SOURCES ${${PROJEC_NAME}_RESOURCES})
 
+## Core 
+find_package(MOONLIGHT_CORE REQUIRED)
+include_directories(${MOONLIGHT_CORE_SERIVICES_DIR})
+
 #CppMicroServices
 find_package(CppMicroServices NO_MODULE REQUIRED)
 include_directories(${CppMicroServices_INCLUDE_DIRS})
