@@ -22,8 +22,14 @@
 #ifndef MODULEMANAGER_H
 #define	MODULEMANAGER_H
 
-#include <usSharedLibrary.h>
+#include "core/ICore.h"
+#include "core/IQt5.h"
+
+#include <qt5xdg/XdgDesktopFile>
+
+#include <usServiceTracker.h>
 #include <usModuleContext.h>
+#include <usSharedLibrary.h>
 
 #include <QString>
 #include <QHash>
@@ -31,14 +37,6 @@
 
 #include <string>
 #include <algorithm>
-
-#include "core/ICore.h"
-
-#include <qt5xdg/XdgDesktopFile>
-
-#include <usSharedLibrary.h>
-
-#include <QHash>
 
 US_USE_NAMESPACE
 
@@ -49,10 +47,12 @@ public:
 
     bool load(const QString &name);
     bool unload(const QString &name);
-    void loadFromProfile(QSettings * profile);
-    QList<QString> listAviableModules();
-    QList<QString> listActiveModules();
+    QList<QString> getAviableModules();
+    QList<QString> getActiveModules();
 
+    const QStringList getStartUpModules() const;
+    void setStartUpModules(const QStringList &modules);
+    
     XdgDesktopFile * getModuleDescriptor(const QString moduleName);
 
     virtual ~ModuleManager();
@@ -60,6 +60,9 @@ public:
 private:
     QStringList m_descriptorsPaths;
     QHash<QString, SharedLibrary*> libs;
+    
+    us::ModuleContext* m_context;
+    us::ServiceTracker<QSettings>* m_CoreSettingsTracker;
 };
 
 #endif	/* MODULEMANAGER_H */

@@ -48,6 +48,14 @@ ModuleManager::ModuleManager(const QHash<QString, QString> config) {
     qDebug() << "Module manager configuration:";
     qDebug() << "\tModules paths: " << qApp->libraryPaths();
     qDebug() << "\tDescriptors paths: " << m_descriptorsPaths;
+
+    m_context = us::GetModuleContext();
+
+    m_CoreSettingsTracker = new us::ServiceTracker<QSettings>(
+            m_context, us::LDAPFilter(std::string("(&(") + us::ServiceConstants::OBJECTCLASS() + "=" +
+            us_service_interface_iid<QSettings>() + ")" + "(Module=Core))")
+            );
+    m_CoreSettingsTracker->Open();
 }
 
 ModuleManager::~ModuleManager() {
@@ -135,24 +143,7 @@ bool ModuleManager::unload(const QString &name) {
     return true;
 }
 
-void ModuleManager::loadFromProfile(QSettings * profile) {
-    qDebug() << "Loading list: " << profile->fileName();
-
-    int nmodules = profile->beginReadArray("Modules");
-    if (nmodules > 0) {
-        for (int i = 0; i < nmodules; i++) {
-            profile->setArrayIndex(i);
-            QString moduleName = profile->value("Name").toString();
-            load(moduleName);
-        }
-        profile->endArray();
-    } else {
-        qWarning() << "Sorry, there are no modules names.";
-    }
-    qDebug() << "Loading list finished.";
-}
-
-QList<QString> ModuleManager::listAviableModules() {
+QList<QString> ModuleManager::getAviableModules() {
     QList<QString> list;
     QStringList nameFilters;
     nameFilters << "libmoonlightDE-*.so";
@@ -172,7 +163,7 @@ QList<QString> ModuleManager::listAviableModules() {
     return list;
 }
 
-QList<QString> ModuleManager::listActiveModules() {
+QList<QString> ModuleManager::getActiveModules() {
     QList<QString> list;
     QStringList nameFilters;
     nameFilters << "libmoonlightDE-*.so";
@@ -204,4 +195,46 @@ XdgDesktopFile * ModuleManager::getModuleDescriptor(const QString moduleName) {
         }
     }
     return descriptor;
+}
+
+const QStringList ModuleManager::getStartUpModules() const {
+    QStringList list;
+    QSettings * settings = m_CoreSettingsTracker->GetService();
+    if (settings == NULL)
+        qDebug() << "Unable to locate the CoreSettings Service.";
+    else {
+        qDebug() << "Reading startup modules list from: " << settings->fileName();
+
+        int nmodules = settings->beginReadArray("Modules");
+        if (nmodules > 0) {
+            for (int i = 0; i < nmodules; i++) {
+                settings->setArrayIndex(i);
+                QString moduleName = settings->value("Name").toString();
+                list.append(moduleName);
+            }
+        } else {
+            qWarning() << "There are any configured modules to load.";
+        }
+        settings->endArray();
+    }
+
+
+    return list;
+}
+
+void ModuleManager::setStartUpModules(const QStringList &modules) {
+    QSettings * settings = m_CoreSettingsTracker->GetService();
+    if (settings == NULL)
+        qDebug() << "Unable to locate the CoreSettings Service.";
+    else {
+        settings->beginWriteArray("Modules", modules.size());
+        int pos = 0;
+
+        foreach(QString moduleName, modules) {
+            settings->setArrayIndex(pos);
+            settings->setValue("Name", moduleName);
+            pos++;
+        }
+        settings->endArray();
+    }
 }
