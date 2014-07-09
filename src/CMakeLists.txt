@@ -32,10 +32,15 @@ set(${PROJECT_NAME}_SOURCES
     Controller.cpp
     ModuleManager.h
     ModuleManager.cpp
+    ModuleModel.h
+    ModuleModel.cpp
+    CoreConfigurationUI.cpp
+    CoreConfigurationUI.h
     main.cpp
 )
 
 set ( ${PROJEC_NAME}_UIS
+    CoreConfigurationUI.ui
 )
 
 set ( ${PROJEC_NAME}_RESOURCES
