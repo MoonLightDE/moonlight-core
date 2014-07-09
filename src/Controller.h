@@ -23,6 +23,7 @@
 #define	CORE_H
 
 #include "core/ICore.h"
+#include "CoreConfigurationUI.h"
 
 #include <QString>
 #include <QHash>
@@ -31,7 +32,7 @@ class Controller : public Core::IController {
     Q_OBJECT
     Q_INTERFACES(Core::IController)
 public:
-    Controller(const QHash<QString, QString> &config);
+    Controller(const QHash<QString, QVariant> &config);
     void start();
     void finish();
     virtual ~Controller();
@@ -43,8 +44,9 @@ signals:
 private:
     Core::IModuleManager * moduleManager;
     QSettings * m_profile;
-
     QStringList m_descriptorsPaths;
+
+    CoreConfigurationUI * m_configUi;
 };
 
 #endif	/* CORE_H */

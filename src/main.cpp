@@ -51,7 +51,7 @@ int main(int argc, char** argv) {
     app.setOrganizationDomain("org.moonlightde");
 
     // Parse arguments
-    QHash<QString, QString> config;
+    QHash<QString, QVariant> config;
     //    TODO: Add a an option to open configuration dialog before start.
     //    bool config;
     { // Scope used to force varibles release 
@@ -60,6 +60,11 @@ int main(int argc, char** argv) {
         parser.addHelpOption();
         parser.addVersionOption();
 
+        // Show Config option
+        QCommandLineOption configOption(QStringList() << "c" << "configuration",
+                QCoreApplication::translate("configuration", "Show the configuration UI."));
+        parser.addOption(configOption);
+        
         // Profile option
         QCommandLineOption profileOption(QStringList() << "p" << "profile",
                 QCoreApplication::translate("profile", "Defines the profile to be used."),
@@ -84,15 +89,11 @@ int main(int argc, char** argv) {
         // Process the actual command line arguments given by the user
         parser.process(app);
 
-        // const QStringList config = parser.positionalArguments();
-        // source is args.at(0), destination is args.at(1)
 
+        config["showConfig"] = parser.isSet(configOption);
         config["profile"] = parser.value(profileOption);
-        //        profile = parser.value(profileOption);
         config["modulesPath"] = parser.value(modulesPathOption);
-        //        modulesPath = parser.value(modulesPathOption);
         config["descriptorsPath"] = parser.value(modulesDescriptorsPathOption);
-        //        descriptorsPath = parser.value(modulesDescriptorsPathOption);
     }
 
     Core::IController * core = new Controller(config);

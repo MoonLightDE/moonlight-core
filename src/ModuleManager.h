@@ -43,7 +43,7 @@ US_USE_NAMESPACE
 
 class ModuleManager : public Core::IModuleManager {
 public:
-    ModuleManager(const QHash<QString, QString> config);
+    ModuleManager(const QHash<QString, QVariant> config);
 
     bool load(const QString &name);
     bool unload(const QString &name);

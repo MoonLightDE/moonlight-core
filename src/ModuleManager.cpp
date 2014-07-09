@@ -39,12 +39,12 @@
 
 US_USE_NAMESPACE
 
-ModuleManager::ModuleManager(const QHash<QString, QString> config) {
+ModuleManager::ModuleManager(const QHash<QString, QVariant> config) {
     qApp->addLibraryPath(MODULES_INSTALL_DIR);
-    qApp->addLibraryPath(config["modulesPath"]);
+    qApp->addLibraryPath(config["modulesPath"].toString());
 
     m_descriptorsPaths.append(DESCRIPTORS_INSTALL_DIR);
-    m_descriptorsPaths.append(config["descriptorsPath"]);
+    m_descriptorsPaths.append(config["descriptorsPath"].toString());
     qDebug() << "Module manager configuration:";
     qDebug() << "\tModules paths: " << qApp->libraryPaths();
     qDebug() << "\tDescriptors paths: " << m_descriptorsPaths;

@@ -21,7 +21,6 @@
 
 #include "Controller.h"
 #include "ModuleManager.h"
-#include "CoreConfigurationUI.h"
 #include "../include/core/IQt5.h"
 
 #include <usGetModuleContext.h>
@@ -34,8 +33,8 @@
 
 using namespace us;
 
-Controller::Controller(const QHash<QString, QString> &config) {
-    QString profile = config["profile"];
+Controller::Controller(const QHash<QString, QVariant> &config) {
+    QString profile = config["profile"].toString();
     if (QFile::exists(profile)) {
         m_profile = new QSettings(profile, QSettings::NativeFormat, this);
     } else {
@@ -58,6 +57,13 @@ Controller::Controller(const QHash<QString, QString> &config) {
         ServiceProperties props;
         context->RegisterService<Core::IController>(this, props);
     }
+    if (config["showConfig"].toBool()) {
+        m_configUi = new CoreConfigurationUI();
+        m_configUi->show();
+    } else {
+        m_configUi = NULL;
+    
+    }
 }
 
 void Controller::start() {
@@ -69,11 +75,10 @@ void Controller::start() {
     }
     emit(started());
 
-
-    if (moduleManager->getActiveModules().size() < 1) {
-        qDebug() << "Active Modules" << moduleManager->getActiveModules();
-        CoreConfigurationUI * configUi = new CoreConfigurationUI();
-        configUi->show();
+    if (moduleManager->getActiveModules().size() <= 1) {
+        if (m_configUi == NULL)
+            m_configUi = new CoreConfigurationUI();
+        m_configUi->show();
     }
 }
 
