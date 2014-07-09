@@ -46,11 +46,13 @@ signals:
     public:
         virtual bool load(const QString &name) = 0;
         virtual bool unload(const QString &name) = 0;
-        virtual void loadFromProfile(QSettings *profile) = 0;
-        virtual QList<QString> listAviableModules() = 0;
-        virtual QList<QString> listActiveModules() = 0;
+
+        virtual QList<QString> getAviableModules() = 0;
+        virtual QList<QString> getActiveModules() = 0;
         virtual XdgDesktopFile * getModuleDescriptor(const QString moduleName) = 0;
 
+        virtual const QStringList getStartUpModules() const = 0;
+        virtual void setStartUpModules(const QStringList &modules) = 0;
     };
 
 }
@@ -58,7 +60,7 @@ signals:
 Q_DECLARE_INTERFACE(Core::IController, "org.moonlightde.core.IController/1.0")
 US_DECLARE_SERVICE_INTERFACE(Core::IController, "org.moonlightde.core.IController/1.0")
 
-US_DECLARE_SERVICE_INTERFACE(Core::IModuleManager, "org.moonlightde.core.IModuleManager/1.0")
+US_DECLARE_SERVICE_INTERFACE(Core::IModuleManager, "org.moonlightde.core.IModuleManager/1.1")
 
 #endif	/* ICORE_H */
 
