@@ -24,11 +24,12 @@
 #include <usServiceInterface.h>
 #include <QObject>
 #include <QWidget>
+#include <QSettings>
 
 Q_DECLARE_INTERFACE(QObject, "org.qt-project.Qt.QObject")
 US_DECLARE_SERVICE_INTERFACE(QObject, "org.qt-project.Qt.QObject")
 
-Q_DECLARE_INTERFACE(QWidget, "org.qt-project.Qt.QWidget")
 US_DECLARE_SERVICE_INTERFACE(QWidget, "org.qt-project.Qt.QWidget")
 
+US_DECLARE_SERVICE_INTERFACE(QSettings, "org.qt-project.Qt.QSettings")
 #endif // IQT5_H
