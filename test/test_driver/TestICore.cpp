@@ -36,13 +36,13 @@ void TestICore::IModuleManager() {
     QVERIFY(moduleManager != NULL);
 
     
-    QVERIFY(moduleManager->listAviableModules().contains("moonlightDE-test_module"));
+    QVERIFY(moduleManager->getAviableModules().contains("moonlightDE-test_module"));
     moduleManager->load("moonlightDE-test_module");
     
-    QVERIFY(moduleManager->listActiveModules().contains("moonlightDE-test_module"));
+    QVERIFY(moduleManager->getActiveModules().contains("moonlightDE-test_module"));
     moduleManager->unload("moonlightDE-test_module");
     
-    QVERIFY(moduleManager->listActiveModules().contains("moonlightDE-test_module") == false);
+    QVERIFY(moduleManager->getActiveModules().contains("moonlightDE-test_module") == false);
     
     XdgDesktopFile * desc = moduleManager->getModuleDescriptor("moonlightDE-test_driver");
     QVERIFY(desc != NULL);
