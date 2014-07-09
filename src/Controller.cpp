@@ -21,6 +21,8 @@
 
 #include "Controller.h"
 #include "ModuleManager.h"
+#include "CoreConfigurationUI.h"
+#include "../include/core/IQt5.h"
 
 #include <usGetModuleContext.h>
 #include <usModuleContext.h>
@@ -34,12 +36,12 @@ using namespace us;
 
 Controller::Controller(const QHash<QString, QString> &config) {
     QString profile = config["profile"];
-    if (QFile::exists(profile)){
-        m_profile = new QSettings(profile, QSettings::IniFormat, this);
+    if (QFile::exists(profile)) {
+        m_profile = new QSettings(profile, QSettings::NativeFormat, this);
     } else {
         m_profile = new QSettings(qApp->organizationName(), profile, this);
     }
-    
+
     ModuleContext * context = GetModuleContext();
 
     moduleManager = new ModuleManager(config);
@@ -47,7 +49,11 @@ Controller::Controller(const QHash<QString, QString> &config) {
         ServiceProperties props;
         context->RegisterService<Core::IModuleManager>(moduleManager, props);
     }
-    
+    {
+        ServiceProperties props;
+        props["Module"] = std::string("Core");
+        context->RegisterService<QSettings>(m_profile, props);
+    }
     {
         ServiceProperties props;
         context->RegisterService<Core::IController>(this, props);
@@ -56,9 +62,19 @@ Controller::Controller(const QHash<QString, QString> &config) {
 
 void Controller::start() {
     // Loading modules
-    moduleManager->loadFromProfile(m_profile);
+    const QStringList list = moduleManager->getStartUpModules();
 
+    foreach(QString module, list) {
+        moduleManager->load(module);
+    }
     emit(started());
+
+
+    if (moduleManager->getActiveModules().size() < 1) {
+        qDebug() << "Active Modules" << moduleManager->getActiveModules();
+        CoreConfigurationUI * configUi = new CoreConfigurationUI();
+        configUi->show();
+    }
 }
 
 void Controller::finish() {
